@@ -1,0 +1,26 @@
+
+.pagination {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  justify-content: center;
+}
+
+.pagination__item {
+  margin: 0 5px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.pagination__item-previous,
+.pagination__item-next {
+  font-size: 18px;
+}
+
+.active {
+  background-color: #ff8c00;
+  color: white;
+  border: 1px solid #ff8c00;
+}
