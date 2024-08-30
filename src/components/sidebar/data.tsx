@@ -17,12 +17,12 @@ export const navItems = [
 
   {
     title: "Settings",
-    to: "/settings/security",
+    to: "/settings",
     icon: <CogIcon className="w-5 h-5" />,
   },
   {
     title: "REFERRALS",
-    to: "/wallet",
+    to: "/referrals",
     icon: <Wallet className="w-5 h-5" />,
   },
   {
