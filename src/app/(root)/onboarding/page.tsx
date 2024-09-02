@@ -2,6 +2,7 @@
 import HeaderWrapper from "@/components/sidebar/Header";
 import { Button } from "@/components/button";
 import { useState } from "react";
+import Link from "next/link";
 import Accordion from "@/components/accordion";
 import { FaCircleExclamation } from "react-icons/fa6";
 
@@ -17,7 +18,7 @@ const Onboarding = () => {
       <div className="min-h-screen mx-16 ms-64 p-8 bg-gray-50">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold mb-2">Welcome, Landest</h1>
+            <h1 className="text-2xl font-bold mb-2">Welcome, Landest</h1>
             <p className="text-lg">
               Hi, Amos, welcome to Landest. Walk with us as we take you on a
               tour through your dashboard.
@@ -29,21 +30,23 @@ const Onboarding = () => {
         <section className="flex items-center p-6">
           <FaCircleExclamation size={40} style={{ color: "#dc2626" }} />
           <div className="ml-6 flex-1">
-            <h2 className="text-xl font-semibold mb-2">
+            <h2 className=" font-semibold mb-2">
               Profile Information Incomplete
             </h2>
             <p className="text-gray-700 mb-4">
               Kindly input your basic details at the profile settings
             </p>
           </div>
-          <Button className="ml-4 rounded">Update Profile</Button>
+          <Link href="/settings">
+            <Button className="ml-4 rounded border border-primary bg-white text-primary">
+              Update Profile
+            </Button>
+          </Link>
         </section>
 
         <section>
           <div className="p-8">
-            <h1 className="text-2xl font-bold mb-4">
-              Frequently Asked Questions
-            </h1>
+            <h1 className="text-2xl font-bold mb-4">FAQ</h1>
 
             <Accordion title="Lorem ipsum dolor sit amet?">
               <p>

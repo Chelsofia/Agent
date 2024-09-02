@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Badge } from "@/components/badge";
 import SearchBar from "@/components/searchBar";
-import Table from "@/components/sidebar/tableSection";
+import Table from "@/components/tableSection";
 import { referralsData } from "../referrals/data"; 
 
 const Referrals = () => {
@@ -48,18 +48,16 @@ const Referrals = () => {
   ]);
 
   return (
-    <div className="container mx-64 px-4">
-      <h1 className="text-2xl font-bold mb-4">Referral Dashboard</h1>
+    <div className="container mx-64 px-4 w-[80%]">
+   
 
-      <div className="mb-4 flex justify-end">
+
+      <div className="mt-4 flex gap-2 ">
         <SearchBar
           placeholder="Search customers by name or user ID"
           onChange={handleSearchChange}
+        
         />
-      </div>
-
-      {/* Filter Buttons */}
-      <div className="mb-4 flex gap-2">
         <button
           onClick={() => handleFilterChange("All")}
           className={`px-4 py-2 rounded ${
@@ -102,7 +100,6 @@ const Referrals = () => {
         </button>
       </div>
 
-      {/* Table Component */}
       <Table
         headers={[
           "Full Name",

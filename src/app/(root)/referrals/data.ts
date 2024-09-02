@@ -6,6 +6,8 @@ export const referralsData = [
     type: "Registration",
     amount: "₦200,000,000.00",
     date: "23/04/2023 11:59PM",
+    email: "olamidejohn@gmail.com",
+    image: "/images/image.png",
     event: "3 Bedroom Duplex",
   },
   {
@@ -14,6 +16,8 @@ export const referralsData = [
     type: "Investment",
     amount: "₦200,000,000.00",
     date: "23/04/2023 11:59PM",
+    email: "olamidejohn@gmail.com",
+    image: "/images/image.png",
     event: "3 Bedroom Duplex",
   },
   {
@@ -22,6 +26,8 @@ export const referralsData = [
     type: "Properties",
     amount: "₦200,000,000.00",
     date: "23/04/2023 11:59PM",
+    email: "olamidejohn@gmail.com",
+    image: "/images/image.png",
     event: "3 Bedroom Duplex",
   },
   {
@@ -30,6 +36,8 @@ export const referralsData = [
     type: "Properties",
     amount: "₦200,000,000.00",
     date: "23/04/2023 11:59PM",
+    email: "olamidejohn@gmail.com",
+    image: "/images/image.png",
     event: "3 Bedroom Duplex",
   },
 ];

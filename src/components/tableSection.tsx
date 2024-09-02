@@ -8,12 +8,7 @@ type TableProps = {
 const Table: React.FC<TableProps> = ({ headers, rows }) => {
   return (
     <div className="p-6 bg-white rounded-lg shadow-md">
-      <div className="mb-4 flex gap-2">
-       
-        <button className="bg-gray-600 text-white px-4 py-2 rounded hover:bg-gray-700">
-          Filter
-        </button>
-      </div>
+  
 
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
@@ -22,7 +17,7 @@ const Table: React.FC<TableProps> = ({ headers, rows }) => {
               {headers.map((header, index) => (
                 <th
                   key={index}
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-bold text-gray-700 uppercase tracking-wider"
                 >
                   {header}
                 </th>

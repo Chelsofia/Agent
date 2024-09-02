@@ -8,8 +8,7 @@ type SearchBarProps = {
 const SearchBar: FC<SearchBarProps> = ({ placeholder, onChange }) => {
   return (
     <div className="relative flex items-center w-full max-w-md">
-      {" "}
-      {/* Updated width to max-w-md */}
+
       <input
         type="text"
         placeholder={placeholder}

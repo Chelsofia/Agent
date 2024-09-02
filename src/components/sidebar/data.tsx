@@ -21,7 +21,7 @@ export const navItems = [
     icon: <CogIcon className="w-5 h-5" />,
   },
   {
-    title: "REFERRALS",
+    title: "Referrals",
     to: "/referrals",
     icon: <Wallet className="w-5 h-5" />,
   },

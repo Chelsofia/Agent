@@ -18,22 +18,19 @@ interface WrapperProps {
   };
 }
 
-const AppLayout = ({ children, isBlur, paginationProps }: WrapperProps) => {
+const AppLayout = ({ children, isBlur, }: WrapperProps) => {
   const [open, setOpen] = useState(false);
- console.log('Pagination Props:', paginationProps); 
+ 
   return (
     <div className={`${isBlur ? "blur-md" : ""}`}>
       <Sidebar setOpen={setOpen} open={open} />
       
-      <div className="overflow-hidden px-8 lg:px-0">
         {children}
-        {paginationProps && (
-          <div className="mt-4 flex justify-center">
-            <Pagination {...paginationProps} />
-          </div>
-        )}
+       
+        
+        
       </div>
-    </div>
+   
   );
 };
 

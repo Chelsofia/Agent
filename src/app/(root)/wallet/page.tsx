@@ -1,28 +1,84 @@
 "use client";
-import {Badge} from "./badge";
-import { useState } from "react";
+import React, { useState } from "react";
+import { Badge } from "@/components/badge";
+import { VscFilter } from "react-icons/vsc";
+import {Modal} from "@/components/modal"; // Ensure the import is correct
 import HeaderWrapper from "@/components/sidebar/Header";
-const transactions = [
-  {
-    id: "Trnx123456789012",
-    amount: "₦300,000",
-    status: "Successful",
-  },
-  {
-    id: "Trnx123456789013",
-    amount: "₦300,000",
-    status: "Failed",
-  },
-  {
-    id: "Trnx123456789014",
-    amount: "₦300,000",
-    status: "Pending",
-  },
-  // ... more transactions
-];
+import Table from "@/components/tableSection";
+import WalletCard from "@/components/card";
+import { walletData } from "./data";
+import SearchBar from "@/components/searchBar";
+
+type Transaction = {
+  id: string;
+  amount: string;
+  status: string;
+  action?: string;
+};
 
 export default function WalletPage() {
-    const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [filter, setFilter] = useState<string>("All");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTransaction, setSelectedTransaction] =
+    useState<Transaction | null>(null);
+
+  const handleSearchChange = (value: string) => {
+    setSearchQuery(value.toLowerCase());
+  };
+
+  const handleFilterChange = (newFilter: string) => {
+    setFilter(newFilter);
+  };
+
+  const mapStatusToBadgeStatus = (status: string) => {
+    switch (status.toLowerCase()) {
+      case "successful":
+        return "success";
+      case "failed":
+        return "failed";
+      case "pending":
+        return "pending";
+      default:
+        return undefined;
+    }
+  };
+
+  const filteredData = walletData
+    .filter(
+      (item) =>
+        filter === "All" || item.status.toLowerCase() === filter.toLowerCase()
+    )
+    .filter((item) => item.id.toLowerCase().includes(searchQuery));
+
+  const rows = filteredData.map((item, index) => [
+    item.id,
+    item.amount,
+    <Badge key={index} status={mapStatusToBadgeStatus(item.status)}>
+      {item.status}
+    </Badge>,
+    <button
+      key={index}
+      className="text-secondary hover:underline"
+      onClick={() => {
+        setSelectedTransaction(item); // Set the selected transaction
+        setIsModalOpen(true); // Open the modal
+      }}
+    >
+      View Receipt
+    </button>,
+  ]);
+
+  const getCountForFilter = (filterValue: string) => {
+    return walletData.filter(
+      (item) =>
+        (filterValue === "All" ||
+          item.status.toLowerCase() === filterValue.toLowerCase()) &&
+        item.id.toLowerCase().includes(searchQuery)
+    ).length;
+  };
+
   return (
     <>
       <HeaderWrapper
@@ -32,46 +88,44 @@ export default function WalletPage() {
       />
 
       <div className="p-6 ms-64 bg-white rounded-lg shadow-md">
-        {/* Table headers */}
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Transaction ID
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Amount
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Action
-              </th>
-            </tr>
-          </thead>
-          {/* Table rows */}
-          <tbody className="bg-white divide-y divide-gray-200">
-            {transactions.map((transaction) => (
-              <tr key={transaction.id}>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                  {transaction.id}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                  {transaction.amount}
-                </td>
-                {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                
-              </td> */}
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                  <a href="#" className="text-orange-600 hover:underline">
-                    View Receipt
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <WalletCard />
+        <br />
+        <div className="mb-4 flex gap-2">
+          <SearchBar
+            placeholder="Search transactions by transaction ID"
+            onChange={handleSearchChange}
+          />
+          {/* Filter buttons */}
+          {/* ... */}
+        </div>
+
+        <Table
+          headers={["Transaction id", "Amount", "Status", "Actions"]}
+          rows={rows}
+        />
+
+        <Modal 
+          open={isModalOpen}
+          setOpen={setIsModalOpen}
+          title ="Transaction Details"
+        >
+          {selectedTransaction && (
+            <div className="p-4">
+              <h1 className="xl">{selectedTransaction.amount}</h1>
+
+              <p className="text-green-500">credit</p>
+              <p>
+                <strong>Transaction ID:</strong> {selectedTransaction.id}
+              </p>
+              <p>
+                <strong>Amount:</strong> ${selectedTransaction.amount}
+              </p>
+              <p>
+                <strong>Status:</strong> {selectedTransaction.status}
+              </p>
+            </div>
+          )}
+        </Modal>
       </div>
     </>
   );

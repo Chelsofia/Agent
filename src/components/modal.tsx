@@ -1,3 +1,5 @@
+// src/components/modal.tsx
+
 import React, { FC, Fragment, ReactNode, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
@@ -16,6 +18,7 @@ interface ModalProps {
   className?: string;
   type?: (typeof modalTypes)[number];
   title?: ReactNode;
+  onClose?: () => void; 
 }
 
 const Modal: FC<ModalProps> = ({
@@ -27,13 +30,19 @@ const Modal: FC<ModalProps> = ({
   dismissOnclickOutside = true,
   className,
   title,
+  onClose, 
 }) => {
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
         as="div"
         className="relative z-[100]"
-        onClose={(state) => (dismissOnclickOutside ? setOpen(state) : void 0)}
+        onClose={(state) => {
+          if (dismissOnclickOutside) {
+            setOpen(state);
+            if (onClose) onClose(); // Call onClose if provided
+          }
+        }}
       >
         <Transition.Child
           as={Fragment}
@@ -73,6 +82,7 @@ const Modal: FC<ModalProps> = ({
                       className=" text-primary   w-7 h-7 flex items-center justify-center rounded-full"
                       onClick={() => {
                         setOpen(false);
+                        if (onClose) onClose(); // Call onClose if provided
                       }}
                     >
                       <XMarkIcon className="w-5 h-5" />
@@ -97,6 +107,8 @@ const Modal: FC<ModalProps> = ({
     </Transition.Root>
   );
 };
+
+export { Modal };
 
 export const useModal = (defaultOpen?: boolean) => {
   const [open, setOpen] = useState(defaultOpen ?? false);

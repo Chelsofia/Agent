@@ -1,42 +1,71 @@
-// "use client";
-// import { useRouter } from "next/router";
-// import Link from "next/link";
-// import { ReactNode } from "react";
+"use client";
+import { useEffect, useState } from "react";
+import HeaderWrapper from "@/components/sidebar/Header";
+import ProfileContent from "@/components/ProfileContent";
+import SecurityContent from "@/components/SecurityContent";
 
-// interface SettingsLayoutProps {
-//   children: ReactNode;
-// }
+const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
+     const [open, setOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<string>("profile");
 
-// const SettingsLayout = ({ children }: SettingsLayoutProps) => {
-//   const router = useRouter();
-//   const { pathname } = router;
+  useEffect(() => {
+    // Parse the URL to get the query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const tab = urlParams.get("tab");
 
-//   const tabs = [
-//     { name: "Profile", path: "/settings/profile" },
-//     { name: "Security", path: "/settings/security" },
-//   ];
+    // Set the active tab based on the query parameter
+    setActiveTab(tab === "security" ? "security" : "profile");
+  }, []);
 
-//   return (
-//     <div className="container mx-auto p-4">
-//       <h1 className="text-2xl font-bold mb-4">Settings</h1>
-//       <div className="flex space-x-4 mb-6">
-//         {tabs.map((tab) => (
-//           <Link href={tab.path} key={tab.name}>
-//             <a
-//               className={`py-2 px-4 rounded ${
-//                 pathname === tab.path
-//                   ? "bg-blue-500 text-white"
-//                   : "bg-gray-200 text-gray-800"
-//               }`}
-//             >
-//               {tab.name}
-//             </a>
-//           </Link>
-//         ))}
-//       </div>
-//       <div>{children}</div>
-//     </div>
-//   );
-// };
+  const handleTabChange = (selectedTab: string) => {
+    // Update the query parameter in the URL
+    const searchParams = new URLSearchParams(window.location.search);
+    searchParams.set("tab", selectedTab);
+    window.history.pushState(null, "", `?${searchParams.toString()}`);
 
-// export default SettingsLayout;
+    // Update the active tab state
+    setActiveTab(selectedTab);
+  };
+
+  return (
+    <>
+      <HeaderWrapper
+        onClick={() => setOpen(!open)}
+        title={"Settings"}
+        isTime={true}
+      />
+      <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
+        {/* Tabs */}
+        <div className="flex  mb-6">
+          <button
+            className={`px-4 py-2 ml-8 bg-white shadow-md  ${
+              activeTab === "profile"
+                ? "text-gray-800 bg-gray-300"
+                : "text-gray-600"
+            }`}
+            onClick={() => handleTabChange("profile")}
+          >
+            Profile
+          </button>
+          <button
+            className={`px-4 py-2 ml-6 bg-white shadow-md ${
+              activeTab === "security"
+                ? "text-gray-800 bg-gray-300"
+                : "text-gray-600"
+            }`}
+            onClick={() => handleTabChange("security")}
+          >
+            Security
+          </button>
+        </div>
+
+        <div className="ml-8">
+          {activeTab === "profile" && <ProfileContent />}
+          {activeTab === "security" && <SecurityContent />}
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default SettingsLayout;
