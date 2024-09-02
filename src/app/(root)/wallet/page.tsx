@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Badge } from "@/components/badge";
 import { VscFilter } from "react-icons/vsc";
-import {Modal} from "@/components/modal"; // Ensure the import is correct
+import {Modal} from "@/components/modal"; 
 import HeaderWrapper from "@/components/sidebar/Header";
 import Table from "@/components/tableSection";
 import WalletCard from "@/components/card";
@@ -62,8 +62,8 @@ export default function WalletPage() {
       key={index}
       className="text-secondary hover:underline"
       onClick={() => {
-        setSelectedTransaction(item); // Set the selected transaction
-        setIsModalOpen(true); // Open the modal
+        setSelectedTransaction(item); 
+        setIsModalOpen(true); 
       }}
     >
       View Receipt
