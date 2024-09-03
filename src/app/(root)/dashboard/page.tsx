@@ -3,6 +3,7 @@ import HeaderWrapper from "@/components/sidebar/Header";
 import ChartComponent from "@/components/chart";
 import { FaArrowRight } from "react-icons/fa";
 import { useState } from "react";
+import { MdBorderColor } from "react-icons/md";
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
@@ -23,6 +24,7 @@ const Dashboard = () => {
 
   const dataPoints: number[] = [
     10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120,
+    
   ];
 
   return (

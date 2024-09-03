@@ -91,7 +91,7 @@ const Modal: FC<ModalProps> = ({
                 )}
                 {title && (
                   <div className="border-b border-gray-50 px-6 py-4">
-                    <h3 className="text-[24px] font-[700] leading-6 text-gray-900">
+                    <h3 className="text-center font-[700] leading-6 text-secondary">
                       {title}
                     </h3>
                   </div>

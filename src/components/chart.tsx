@@ -13,7 +13,7 @@ import {
   ChartData,
 } from "chart.js";
 
-// Register necessary components for Chart.js
+
 ChartJS.register(
   LineElement,
   PointElement,
@@ -41,9 +41,9 @@ const ChartComponent: React.FC<ChartComponentProps> = ({
         data: dataPoints,
         fill: true,
         borderColor: "red",
-        backgroundColor: "rgba(255, 99, 132, 0.2)", // Lighter red fill
+        backgroundColor: "rgba(255, 99, 132, 0.2)", 
         tension: 0.1,
-        pointRadius: 0, // Remove points on the line
+        pointRadius: 0, 
       },
     ],
   };
@@ -53,13 +53,13 @@ const ChartComponent: React.FC<ChartComponentProps> = ({
     plugins: {
       legend: {
         position: "top",
-        display: false, // Hide legend if not needed
+        display: false, 
       },
       tooltip: {
         callbacks: {
           label: (tooltipItem) => {
-            const value = tooltipItem.raw as number; // Assert type
-            return `₦${value.toLocaleString()}`; // Format tooltip label
+            const value = tooltipItem.raw as number; 
+            return `₦${value.toLocaleString()}`;
           },
         },
       },
