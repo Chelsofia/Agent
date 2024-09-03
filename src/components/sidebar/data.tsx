@@ -1,7 +1,7 @@
 import { CogIcon, RectangleGroupIcon } from "@heroicons/react/24/outline";
 import { Wallet } from "iconsax-react";
 import { BiUser } from "react-icons/bi";
-import { BsHouse } from "react-icons/bs";
+
 
 export const navItems = [
   {
@@ -23,7 +23,7 @@ export const navItems = [
   {
     title: "Referrals",
     to: "/referrals",
-    icon: <Wallet className="w-5 h-5" />,
+    icon: <BiUser className="w-5 h-5" />,
   },
   {
     title: "Wallet",

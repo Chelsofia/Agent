@@ -33,7 +33,7 @@ const ProfileContent: React.FC = () => {
 
   return (
     <div>
-      <div className="bg-white p-4 rounded-lg text-gray-700 mt-4">
+      <div className="bg-white p-4 mx-16 rounded-lg text-gray-700 mt-4">
         <div className="flex flex-row items-start pb-4 mb-4">
           <div className="flex-1 mr-4">
             <div>

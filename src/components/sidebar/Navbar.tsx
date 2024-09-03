@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { navItems } from "./data";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 interface NavbarProps {
@@ -14,12 +13,7 @@ const Navbar = ({ setOpen }: NavbarProps) => {
 
   return (
     <div>
-      <Image
-      src="/images/logo.png"
-     height={120}
-     width={120}
-      alt="logo"
-      />
+     
       <h1 className="text-[#FF8C00]">GET STARTED</h1>
       {navItems.map((item, i) => (
         <div key={i} className="mb-4">

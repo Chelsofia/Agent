@@ -22,7 +22,7 @@ const SecurityContent: React.FC = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="mx-16">
         <h2 className="font-bold">Change password</h2>
         <p>Please enter your current password to change your password.</p>
         <br />

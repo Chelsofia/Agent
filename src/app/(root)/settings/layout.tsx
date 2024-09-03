@@ -9,11 +9,11 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
   const [activeTab, setActiveTab] = useState<string>("profile");
 
   useEffect(() => {
-    // Parse the URL to get the query parameter
+    //  get the query parameter
     const urlParams = new URLSearchParams(window.location.search);
     const tab = urlParams.get("tab");
 
-    // Set the active tab based on the query parameter
+
     setActiveTab(tab === "security" ? "security" : "profile");
   }, []);
 
@@ -23,7 +23,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
     searchParams.set("tab", selectedTab);
     window.history.pushState(null, "", `?${searchParams.toString()}`);
 
-    // Update the active tab state
+
     setActiveTab(selectedTab);
   };
 
@@ -36,7 +36,7 @@ const SettingsLayout = ({ children }: { children: React.ReactNode }) => {
       />
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
         {/* Tabs */}
-        <div className="flex  mb-6">
+        <div className="flex  mb-6 mx-16">
           <button
             className={`px-4 py-2 ml-8 bg-white shadow-md  ${
               activeTab === "profile"
