@@ -1,6 +1,7 @@
 "use client";
 import Navbar from "./Navbar";
-import { PowerIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { XCircleIcon } from "@heroicons/react/24/outline";
+import { FaArrowRightFromBracket } from "react-icons/fa6";
 import Logo from "../logo";
 import { useRouter } from "next/navigation";
 
@@ -38,17 +39,17 @@ const Sidebar = ({ open, setOpen, org }: SidebarProps) => {
       </div>
 
       {/* Profile Section */}
-      <div className="mt-auto p-5 flex items-center justify-between bg-navy-900">
-        <div className="flex items-center space-x-3">
+      <div className="mt-auto py-4 px-5 flex items-center justify-between bg-navy-900">
+        <div className="flex items-center py-16 space-x-3">
           <div className="flex items-center justify-center w-10 h-10 bg-pink-100 rounded-full">
             <span className="text-black font-bold">OM</span>
           </div>
-          <div>
+          <div className="flex flex-col">
             <p className="text-white font-semibold">Omawunmi</p>
             <p className="text-gray-400 text-sm">Oma@rayna.ui</p>
           </div>
         </div>
-   
+        <FaArrowRightFromBracket className="text-white ml-4" />
       </div>
     </nav>
   );

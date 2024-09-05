@@ -1,6 +1,5 @@
 
-
-const Profile= () => {
+const Settings= () => {
 
   return (
     
@@ -12,4 +11,4 @@ const Profile= () => {
   );
 };
 
-export default Profile;
+export default Settings;

@@ -9,7 +9,7 @@ interface FilterButtonProps {
 const FilterButton: React.FC<FilterButtonProps> = ({ label, count, color }) => {
   return (
     <button
-      className={`bg-${color}-100 text-${color}-600 font-semibold py-2 px-4 rounded-full`}
+      className={`bg-${color}-100 text-${color}-600 font-semibold  px-4 rounded`}
     >
       {label} <span className="ml-2">({count})</span>
     </button>
@@ -18,14 +18,14 @@ const FilterButton: React.FC<FilterButtonProps> = ({ label, count, color }) => {
 
 const FilterSection: React.FC = () => {
   return (
-    <div className="flex items-center justify-between bg-white p-4">
+    <div className="flex items-center justify-between bg-white ">
       <div className="flex space-x-4">
         <FilterButton label="All Referrals" count={60} color="orange" />
         <FilterButton label="Registration" count={45} color="blue" />
         <FilterButton label="Investment" count={15} color="teal" />
-        <FilterButton label="Purchase" count={15} color="blue" />
+        <FilterButton label="Purchase" count={15} color="-[#FFECE5]" />
       </div>
-      <button className="bg-white border border-gray-300 text-gray-600 py-2 px-4 rounded-md">
+      <button className="bg-white text-gray-600  rounded-md">
         <svg
           className="w-4 h-4 inline-block mr-2"
           xmlns="http://www.w3.org/2000/svg"

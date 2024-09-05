@@ -4,7 +4,15 @@ import { useState } from "react";
 import { Badge } from "@/components/badge";
 import SearchBar from "@/components/searchBar";
 import Table from "@/components/tableSection";
-import { referralsData } from "../referrals/data"; 
+
+
+import {
+  AiOutlineAppstore,
+  AiOutlineUser,
+  AiOutlineDollarCircle,
+  AiOutlineHome,
+} from "react-icons/ai";
+import { referralsData } from "../referrals/data";
 
 const Referrals = () => {
   const [filter, setFilter] = useState<string>("All");
@@ -49,53 +57,57 @@ const Referrals = () => {
 
   return (
     <div className="container mx-64 px-4 w-[80%]">
-   
-
-
-      <div className="mt-4 flex gap-2 ">
+      <div className="mt-4 flex gap-2">
         <SearchBar
           placeholder="Search customers by name or user ID"
           onChange={handleSearchChange}
-        
         />
+
         <button
           onClick={() => handleFilterChange("All")}
-          className={`px-4 py-2 rounded ${
+          className={`px-16 rounded border flex items-center space-x-2 gap-2 text-sm ${
             filter === "All"
               ? "bg-orange-500 text-white"
-              : "bg-gray-200 text-gray-700"
+              : "border-gray-300 text-gray-700"
           } hover:bg-orange-600`}
         >
+          <AiOutlineAppstore />
           All Referrals
         </button>
+
         <button
           onClick={() => handleFilterChange("Registration")}
-          className={`px-4 py-2 rounded ${
+          className={`px-9 border flex items-center gap-2 text-sm ${
             filter === "Registration"
-              ? "bg-blue-500 text-white"
-              : "bg-gray-200 text-gray-700"
-          } hover:bg-blue-600`}
-        >
-          Registration
-        </button>
-        <button
-          onClick={() => handleFilterChange("Investment")}
-          className={`px-4 py-2 rounded ${
-            filter === "Investment"
               ? "bg-green-500 text-white"
-              : "bg-gray-200 text-gray-700"
+              : "border-gray-300 text-gray-700"
           } hover:bg-green-600`}
         >
+          <AiOutlineUser />
+          Registration
+        </button>
+
+        <button
+          onClick={() => handleFilterChange("Investment")}
+          className={`px-9 rounded border flex items-center gap-2 text-sm ${
+            filter === "Investment"
+              ? "bg-blue-500 text-white"
+              : "border-gray-300 text-gray-700"
+          } hover:bg-blue-600`}
+        >
+          <AiOutlineDollarCircle />
           Investment
         </button>
+
         <button
           onClick={() => handleFilterChange("Properties")}
-          className={`px-4 py-2 rounded ${
+          className={`px-9  rounded border flex items-center gap-2 text-sm ${
             filter === "Properties"
               ? "bg-yellow-500 text-white"
-              : "bg-gray-200 text-gray-700"
+              : "border-gray-300 text-gray-700"
           } hover:bg-yellow-600`}
         >
+          <AiOutlineHome />
           Properties
         </button>
       </div>

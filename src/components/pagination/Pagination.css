@@ -1,26 +1,40 @@
+.pagination-wrapper {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  margin-left: 16rem;
+  background-color: #fdf2e9; 
+  padding: 10px 0; 
+}
+
+.page-info {
+  color: #333;
+  font-size: 0.875rem;
+}
 
 .pagination {
   display: flex;
+  align-items: center;
   list-style-type: none;
   padding: 0;
-  margin: 0;
-  justify-content: center;
+  margin: 0; 
 }
 
 .pagination__item {
   margin: 0 5px;
-  padding: 10px;
-  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 4px;
   cursor: pointer;
 }
 
-.pagination__item-previous,
-.pagination__item-next {
-  font-size: 18px;
+.pagination__item:hover {
+  background-color: #f3f4f6;
 }
 
 .active {
-  background-color: #ff8c00;
-  color: white;
-  border: 1px solid #ff8c00;
+  border-color: orange;
+  background-color: white;
+  font-weight: bold;
 }
+

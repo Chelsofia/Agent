@@ -9,6 +9,14 @@ import WalletCard from "@/components/card";
 import { walletData } from "./data";
 import SearchBar from "@/components/searchBar";
 
+
+import {
+  AiOutlineTransaction,
+  AiOutlineCheckCircle,
+  AiOutlineClockCircle,
+  AiOutlineCloseCircle,
+} from "react-icons/ai";
+
 type Transaction = {
   id: string;
   amount: string;
@@ -95,64 +103,70 @@ export default function WalletPage() {
       <div className="p-6 ms-64 bg-white rounded-lg shadow-md">
         <WalletCard />
         <br />
-        <div className="mb-4 flex gap-2">
+        <div className="mb-4 flex gap-4">
           <SearchBar
             placeholder="Search transactions by transaction ID"
             onChange={handleSearchChange}
           />
           {/* Filter buttons */}
-          <button
-            onClick={() => handleFilterChange("All")}
-            className={`px-4 py-2 rounded ${
-              filter === "All"
-                ? "bg-orange-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            } hover:bg-orange-600`}
-          >
-            Total Transactions
-          </button>
-          <button
-            onClick={() => handleFilterChange("Successful")}
-            className={`px-4 py-2 rounded ${
-              filter === "RSuccessful"
-                ? "bg-blue-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            } hover:bg-blue-600`}
-          >
-            Successful
-          </button>
+        
+            <button
+              onClick={() => handleFilterChange("All")}
+              className={`flex items-center px-3 py-1 border rounded ${
+                filter === "All"
+                  ? "bg-orange-500 text-white"
+                  : "border-gray-300 text-gray-700"
+              } hover:bg-orange-600`}
+            >
+              <AiOutlineTransaction className="mr-2" />
+              Total Transactions
+            </button>
+            <button
+              onClick={() => handleFilterChange("Successful")}
+              className={`flex items-center px-3 py-1 border rounded ${
+                filter === "Successful"
+                  ? "bg-green-500 text-white"
+                  : "border-gray-300 text-gray-700"
+              } hover:bg-green-600`}
+            >
+              <AiOutlineCheckCircle className="mr-2" />
+              Successful
+            </button>
 
-          <button
-            onClick={() => handleFilterChange("Pending")}
-            className={`px-4 py-2 rounded ${
-              filter === "Pending"
-                ? "bg-yellow-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            } hover:bg-yellow-600`}
-          >
-            Pending
-          </button>
-          <button
-            onClick={() => handleFilterChange("Failed")}
-            className={`px-4 py-2 rounded ${
-              filter === "Failed"
-                ? "bg-yellow-500 text-white"
-                : "bg-gray-200 text-gray-700"
-            } hover:bg-yellow-600`}
-          >
-            Failed
-          </button>
-          <button
-            onClick={() => handleFilterChange("Filter")}
-            className={`flex items-center px-4 py-2 rounded ${
-              filter === ""
-                ? "bg-yellow-500 text-white"
-                : "bg-white text-gray-700"
-            } hover:bg-gray-300`}
-          >
-            <span className="mr-2">Filter</span>
-            <VscFilter />
-          </button>
+            <button
+              onClick={() => handleFilterChange("Pending")}
+              className={`flex items-center px-3 py-1 border rounded ${
+                filter === "Pending"
+                  ? "bg-yellow-500 text-white"
+                  : "border-gray-300 text-gray-700"
+              } hover:bg-yellow-600`}
+            >
+              <AiOutlineClockCircle className="mr-2" />
+              Pending
+            </button>
+            <button
+              onClick={() => handleFilterChange("Failed")}
+              className={`flex items-center px-3 py-1 border rounded ${
+                filter === "Failed"
+                  ? "bg-red-500 text-white"
+                  : "border-gray-300 text-gray-700"
+              } hover:bg-red-600`}
+            >
+              <AiOutlineCloseCircle className="mr-2" />
+              Failed
+            </button>
+            <button
+              onClick={() => handleFilterChange("Filter")}
+              className={`flex items-center border px-4 py-2 rounded ${
+                filter === ""
+                  ? "bg-yellow-500 text-white"
+                  : "border-gray-300 text-gray-700"
+              } hover:bg-gray-300`}
+            >
+              <span className="mr-2">Filter</span>
+              <VscFilter />
+            </button>
+         
         </div>
 
         <Table

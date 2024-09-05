@@ -59,6 +59,7 @@ const SecurityContent: React.FC = () => {
           })}
           error={errors.newPassword?.message}
         />
+        <br></br>
         <Input
           id="confirm-password"
           label="Confirm New Password"

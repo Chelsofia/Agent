@@ -1,91 +1,113 @@
-import React from "react";
+import { FC } from "react";
 import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
-  LineElement,
-  PointElement,
   CategoryScale,
   LinearScale,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
+  Filler,
   ChartOptions,
-  ChartData,
 } from "chart.js";
 
-
 ChartJS.register(
-  LineElement,
-  PointElement,
   CategoryScale,
   LinearScale,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Filler // To fill the area under the line
 );
 
-interface ChartComponentProps {
-  labels: string[];
-  dataPoints: number[];
-}
+const data = {
+  labels: [
+    "Damilola",
+    "Amos",
+    "Gideon",
+    "Dapo",
+    "Peter",
+    "Alex",
+    "Micheal",
+    "James",
+    "Adebola",
+    "Titus",
+    "Folakemi",
+    "Adeleke",
+  ],
+  datasets: [
+    {
+      label: "Transactions",
+      data: [10, 20, 30, 50, 50, 70, 80, 100, 90, 100, 110, 120],
+      borderColor: "rgba(245, 102, 48, 1)",
+      backgroundColor: "rgba(255, 236, 229, 1)",
+      fill: true, 
+      tension: 0.4, 
+      pointRadius: 0, 
+    },
+  ],
+};
 
-const ChartComponent: React.FC<ChartComponentProps> = ({
-  labels,
-  dataPoints,
-}) => {
-  const data: ChartData<"line"> = {
-    labels,
-    datasets: [
-      {
-        label: "Transactions",
-        data: dataPoints,
-        fill: true,
-        borderColor: "red",
-        backgroundColor: "rgba(255, 99, 132, 0.2)", 
-        tension: 0.1,
-        pointRadius: 0, 
+const options: ChartOptions<"line"> = {
+  responsive: true,
+  maintainAspectRatio: false, // Allows for custom sizing
+  plugins: {
+    legend: {
+      display: false, // Hides the legend
+    },
+    tooltip: {
+      mode: "index",
+      intersect: false,
+    },
+  },
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: "Customers",
+        color: "#F56630",
       },
-    ],
-  };
-
-  const options: ChartOptions<"line"> = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
+      grid: {
         display: false, 
       },
-      tooltip: {
-        callbacks: {
-          label: (tooltipItem) => {
-            const value = tooltipItem.raw as number; 
-            return `₦${value.toLocaleString()}`;
-          },
+      ticks: {
+        autoSkip: false, 
+        maxRotation: 0, 
+        minRotation: 0,
+        padding: 20, 
+      },
+    },
+    y: {
+      title: {
+        display: true,
+        text: "Transactions",
+        color: "#F56630",
+      },
+      beginAtZero: true,
+      ticks: {
+        stepSize: 20, // Sets the interval to 20s
+        callback: function (tickValue) {
+          // Ensure tickValue is treated as a number before formatting
+          if (typeof tickValue === "number") {
+            return `₦ ${tickValue}M`;
+          }
+          return tickValue;
         },
       },
     },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Customers",
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Transactions",
-        },
-        beginAtZero: true,
-      },
-    },
-  };
+  },
+};
 
+const AreaChart: FC = () => {
   return (
-    <div className="w-full h-96">
+    <div className="w-full lg:w-[800px] h-[400px]">
       <Line data={data} options={options} />
     </div>
   );
 };
 
-export default ChartComponent;
+export default AreaChart;

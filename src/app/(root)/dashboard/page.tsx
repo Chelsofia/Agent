@@ -1,32 +1,13 @@
 "use client";
 import HeaderWrapper from "@/components/sidebar/Header";
-import ChartComponent from "@/components/chart";
+import AreaChart from "@/components/chart";
 import { FaArrowRight } from "react-icons/fa";
 import { useState } from "react";
-import { MdBorderColor } from "react-icons/md";
+
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false);
-  const labels: string[] = [
-    "Damilola",
-    "Amos",
-    "Gideon",
-    "Dapo",
-    "Peter",
-    "Alex",
-    "Micheal",
-    "James",
-    "Adebola",
-    "Titus",
-    "Folakemi",
-    "Adeleke",
-  ];
-
-  const dataPoints: number[] = [
-    10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120,
-    
-  ];
-
+  
   return (
     <>
       <HeaderWrapper
@@ -77,8 +58,8 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="w-full flex justify-center">
-              <div className="w-[60%]  h-80 md:h-56">
-                <ChartComponent labels={labels} dataPoints={dataPoints} />
+              <div>
+                <AreaChart/>
               </div>
             </div>
           </div>
